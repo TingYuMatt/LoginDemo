@@ -1,0 +1,20 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>登入系統</h1>
+<div>
+    <p>帳號</p>
+    <input type="text" name="account"/>
+
+    <p>密碼</p>
+     <input type="password" />
+</div>
+
+
+<div class="mt-2">
+    <a href="@Url.Content("~/Home/Register")" class="btn btn-primary">註冊</a>
+
+    <input type="submit" value="送出" class="btn btn-primary"/>
+</div>
+
