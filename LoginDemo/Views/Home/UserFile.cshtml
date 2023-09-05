@@ -49,7 +49,6 @@ foreach (var item in Model)
             <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Id)
-                <input type="hidden" name="Id" value="@item.Id" />
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -72,9 +71,11 @@ foreach (var item in Model)
         </tr>
 }}
     <input name="Id" id="hd" type="hidden" value="" />
-    </tbody>
+    
+  
 </table>
 </form>
+<a href="@Url.Content("~/Home/Index")" class="btn btn-primary" >首頁</a>
 
 <nav aria-label="Page navigation example" class="mx-auto mt-4 d-inline">
     <ul class="pagination d-flex mt-3" style="padding-left:40%">
@@ -149,4 +150,27 @@ foreach (var item in Model)
             return re
         }
     </script>
+
+    @*驗證錯誤*@
+    @{
+        if (TempData.ContainsKey("ErrMessage"))
+        {
+            <script>
+
+                alert("@TempData["ErrMessage"]")
+            </script>
+        }
+    }
+    @{
+
+        if (TempData.ContainsKey("Message"))
+        {
+            <script>
+
+                alert("@TempData["Message"]")
+            </script>
+        }
+
+
+    }
 }
