@@ -77,8 +77,9 @@ public partial class TestContext : DbContext
 
         modelBuilder.Entity<Syslog>(entity =>
         {
-            entity.HasNoKey();
+            entity.HasKey(e => e.SeqNo);
 
+            entity.Property(e => e.SeqNo).HasColumnName("seq_no");
             entity.Property(e => e.Acount)
                 .IsRequired()
                 .HasMaxLength(50)
@@ -92,13 +93,9 @@ public partial class TestContext : DbContext
                 .HasMaxLength(50)
                 .HasColumnName("ipaddress");
             entity.Property(e => e.LoginAt)
+                .HasDefaultValueSql("(getdate())")
                 .HasColumnType("datetime")
                 .HasColumnName("login_at");
-            entity.Property(e => e.SeqNo)
-                .IsRequired()
-                .HasMaxLength(10)
-                .IsFixedLength()
-                .HasColumnName("seq_no");
         });
 
         modelBuilder.Entity<Users>(entity =>

@@ -6,9 +6,14 @@ namespace LoginDemo.Models
     public class RegisterVM
     {
 
+        //[DisplayName("單位")]
+        //[Required(ErrorMessage = "{0}必填)")]
+        public string Title { get; set; }
+
         [DisplayName("姓名")]
-        [Required(ErrorMessage = "{0}必填)")]
+        [Required(ErrorMessage = "{0}必填")]
         public string Name { get; set; }
+
         [DisplayName("電子郵件")]
         [MaxLength(50, ErrorMessage = "{0}長度不可大於{1}")]
         [Required(ErrorMessage = "{0}必填")]
@@ -22,16 +27,16 @@ namespace LoginDemo.Models
         public string Password { get; set; }
 
         public DateTime Birthday { get; set; }
-        [DisplayName("檔名")]
-        [Required(ErrorMessage = "{0}必填)")]
-        public string FileName { get; set; }
-        [DisplayName("單位")]
-        [Required(ErrorMessage = "{0}必填)")]
-        public string Title { get; set; }
+
+    
+        public string? File { get; set; }
+
         [DisplayName("帳號")]
-        [Required(ErrorMessage = "{0}必填)")]
-        [RegularExpression("[a-zA-Z0-9]",ErrorMessage ="輸入格式錯誤，請輸入[英文]或[數字]")]
+        [Required(ErrorMessage = "{0}必填")]
+        [RegularExpression("^[a-zA-Z0-9]+$", ErrorMessage ="輸入格式錯誤，請輸入[英文]或[數字]")]
         public string Acount { get; set; }
+
+       
 
     }
 }

@@ -9,18 +9,42 @@
 
     <p>單位名稱</p>
     <input type="text" name="Title" />
+   @* <div class="col-4 text-start mt-1">
+        @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger"})
+    </div>*@
     <p>姓名</p>
-    <input type="text" name="Name"/>
+    <input type="text" name="Name" />
+    <div class="col-4 text-start mt-1">
+        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger"})
+    </div>
     <p>生日</p>
     <input type="date" name="Birthday"/>
+    
     <p>信箱</p>
-    <input type="email"name="Email" />
+    <input type="email"name="Email" id="email" />
+    <div class="col-4 text-start mt-1">
+        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" ,@id="accErr"})
+    </div>
     <p>帳號</p>
-    <input type="text" name="Acount" />
+    <input type="text" name="Acount"id="acount"  />
+    <div class="col-4 text-start mt-1">
+        @Html.ValidationMessageFor(model => model.Acount, "", new { @class = "text-danger"})
+    </div>
     <p>密碼</p>
-    <input type="password"name="Password" />
-    <p>檔案</p>
-    <input type="file" name="File" />
+    <input type="password" name="Password"id="pass" value="Cowbae0212" />
+    <div class="col-4 text-start mt-1">
+        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger"})
+    </div>
+    <p>確認密碼</p>
+    <input type="password" id="confirmpass" value="Cowbae0212" />
+    <div class="col-4 text-start mt-1">
+        <span class ="text-danger"id="passErr"></span>
+    </div>
+    <p>申請資格</p>
+    <input type="file" name="File" required/>
+  @*  <div class="col-4 text-start mt-1">
+        @Html.ValidationMessageFor(model => model.File, "", new { @class = "text-danger"})
+    </div>*@
 
     <div class="mt-2">
         <a href="@Url.Content("~/Home/Index")" class="btn btn-primary">返回</a>
@@ -32,6 +56,48 @@
 
 </form>
 
+
+@section Scripts{
+
+    <script src="
+     https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
+       "></script>
+    <script>
+
+        let regex = /^\w+((-\w+)|(\.\w+))*\@@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z]+$/;
+        $("#email").blur(() => {
+            if (!regex.test($("#email").val())) {
+                $("#accErr").text("格式錯誤")
+                $("#submit").attr("disabled", true)
+            }
+            else {
+                $("#accErr").text("")
+                $("#submit").attr("disabled", false)
+            }
+        })
+        $("#confirmpass").on("keyup", function () {
+            if ($("#confirmpass").val() === $("#pass").val()) {
+                $("#passErr").text("")
+                $("#submit").attr("disabled", false)
+            }
+            else {
+                $("#passErr").text("密碼不一致")
+                $("#submit").attr("disabled", true)
+            }
+        })
+
+
+
+    </script>
+    
+};
+@section Styles
+{
+    <link href="
+https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.min.css
+" rel="stylesheet">
+
+}
 
 
 

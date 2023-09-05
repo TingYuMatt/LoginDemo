@@ -1,10 +1,14 @@
 using LoginDemo.Models.EFModels;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
 builder.Services.AddDbContext<TestContext>(
     options => options.UseSqlServer(
         builder.Configuration.GetConnectionString("TestConnection")

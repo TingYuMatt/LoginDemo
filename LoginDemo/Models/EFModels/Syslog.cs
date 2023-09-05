@@ -7,7 +7,7 @@ namespace LoginDemo.Models.EFModels;
 
 public partial class Syslog
 {
-    public string SeqNo { get; set; }
+    public int SeqNo { get; set; }
 
     public string Acount { get; set; }
 
